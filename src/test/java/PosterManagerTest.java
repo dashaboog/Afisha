@@ -1,8 +1,10 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.PosterManager;
 
 public class PosterManagerTest {
+
     String film1 = "Матрица";
     String film2 = "Армагеддон";
     String film3 = "Криминальное чтиво";
@@ -18,6 +20,7 @@ public class PosterManagerTest {
     String film13 = "Криминальное чтиво";
     String film14 = "Тоторо";
     String film15 = "Ходячий замок";
+
 
     @Test
     public void ShouldShowPoster() {
@@ -58,7 +61,7 @@ public class PosterManagerTest {
 
     @Test
     public void ShouldShowLessLimit() {
-        PosterManager manager = new PosterManager();
+        PosterManager manager = new PosterManager(8);
 
         manager.addFilm(film1);
         manager.addFilm(film2);
@@ -77,7 +80,7 @@ public class PosterManagerTest {
 
 
     @Test
-    public void ShouldShowТen() {
+    public void ShouldShowLastТen() {
         PosterManager manager = new PosterManager();
 
         manager.addFilm(film3);
@@ -90,9 +93,22 @@ public class PosterManagerTest {
         manager.addFilm(film10);
         manager.addFilm(film11);
         manager.addFilm(film12);
-        manager.findAll();
 
         String[] expected = {film12, film11, film10, film9, film8, film7, film6, film5, film4, film3};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void ShouldShowLess() {
+        PosterManager manager = new PosterManager(8);
+
+        manager.addFilm(film10);
+        manager.addFilm(film11);
+        manager.addFilm(film12);
+
+        String[] expected = {film12, film11, film10};
         String[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
