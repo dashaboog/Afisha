@@ -75,7 +75,7 @@ public class PosterManagerTest {
 
     @Test
     public void ShouldShowMore() {
-        PosterManager manager = new PosterManager(3);
+        PosterManager manager = new PosterManager();
 
         manager.addFilm(film1);
         manager.addFilm(film2);
@@ -84,13 +84,38 @@ public class PosterManagerTest {
         manager.addFilm(film5);
         manager.addFilm(film6);
         manager.addFilm(film7);
+        manager.addFilm(film8);
+        manager.addFilm(film9);
+        manager.addFilm(film10);
+        manager.addFilm(film11);
 
-        String[] expected = {film7, film6, film5};
+        String[] expected = {film11, film10, film9, film8, film7, film6, film5, film4, film3, film2};
         String[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    @Test
+    public void ShouldShowMoreWithLimits() {
+        PosterManager manager = new PosterManager(5);
+
+        manager.addFilm(film1);
+        manager.addFilm(film2);
+        manager.addFilm(film3);
+        manager.addFilm(film4);
+        manager.addFilm(film5);
+        manager.addFilm(film6);
+        manager.addFilm(film7);
+        manager.addFilm(film8);
+        manager.addFilm(film9);
+        manager.addFilm(film10);
+        manager.addFilm(film11);
+
+        String[] expected = {film11, film10, film9, film8, film7};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
 
     @Test
     public void ShouldShowLastТen() {
