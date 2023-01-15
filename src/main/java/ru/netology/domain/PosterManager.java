@@ -3,7 +3,6 @@ package ru.netology.domain;
 public class PosterManager {
     private String[] films = new String[0];
     private int numberOfFilms;
-    private int resultLength;
 
     public PosterManager(int numberOfFilms) {
         this.numberOfFilms = numberOfFilms;
@@ -27,6 +26,7 @@ public class PosterManager {
     }
 
     public String[] findLast() {
+        int resultLength;
         if (films.length < numberOfFilms) {
             resultLength = films.length;
         } else {
