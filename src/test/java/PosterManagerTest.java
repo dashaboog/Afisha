@@ -118,6 +118,41 @@ public class PosterManagerTest {
     }
 
     @Test
+    public void ShouldShowZeroWithLimit() {
+        PosterManager poster = new PosterManager(5);
+
+        String[] expected = {};
+        String[] actual = poster.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldShowZeroWithZeroLimit() {
+        PosterManager poster = new PosterManager(0);
+
+        poster.addFilm(film1);
+        poster.addFilm(film2);
+        poster.addFilm(film3);
+
+        String[] expected = {};
+        String[] actual = poster.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldShowZeroWithoutLimit() {
+        PosterManager poster = new PosterManager();
+
+        String[] expected = {};
+        String[] actual = poster.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void ShouldShowLastТen() {
         PosterManager manager = new PosterManager();
 
